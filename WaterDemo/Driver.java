@@ -1,10 +1,10 @@
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Driver {
     public static void main(String[] args) {
         int[] heights = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
         System.out.println("Max Area of " + Arrays.toString(heights) + " is " + maxArea(heights));
+        System.out.println(maxAreaSolution(heights));
     }
 
     public static long maxArea(int[] heights) {
@@ -46,4 +46,30 @@ public class Driver {
         }
         return maxArea;
     }
+
+    public static int maxAreaSolution(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int max = 0;
+        int area;
+        int conHeight;
+        int width;
+        while (left != right){
+            conHeight = Math.min(height[left],height[right]);
+            width = right - left;
+
+            area = conHeight * width;
+
+            if (max < area){
+                max = area;
+            }
+            if (height[left] < height[right]){
+                left++;
+            }else {
+                right --;
+            }
+        }
+        return max;
+    }
+
 }
